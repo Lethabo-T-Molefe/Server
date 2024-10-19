@@ -8,14 +8,14 @@ const userLogin = async (req, res) => {
     let { email, password } = req.body;
     let type = "";
 
-    let [result] = await db.execute("SELECT * from admin WHERE email = ?", [
+    let [result] = await db.execute("SELECT * from user WHERE email = ?", [
       email,
     ]);
 
     if (result.length > 0) {
       type = "admin";
     } else {
-      [result] = await db.execute("SELECT * FROM organiser WHERE email = ?", [
+      [result] = await db.execute("SELECT * FROM user WHERE email = ?", [
         email,
       ]);
       if (result.length > 0) {
