@@ -6,9 +6,9 @@ const sql = fs.readFileSync("./database/sql.sql", "utf8");
 const pool = mysql.createPool({
    host : 'localhost',
    port : 3306,
-   user : 'tvhevents',
-   password : 'alpb^NPL6]Tj_bIc',
-   database: 'tvhevents',
+   user : 'chopa',
+   password : '12345',
+   database: 'atd',
    multipleStatements: true, 
 });
 

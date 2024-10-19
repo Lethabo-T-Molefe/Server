@@ -3,7 +3,7 @@ const db = require("../config/config");
 const jwt = require("jsonwebtoken");
 const { secret_key } = require("../config/auth");
 
-const webuserLogin = async (req, res) => {
+const userLogin = async (req, res) => {
   try {
     let { email, password } = req.body;
     let type = "";
@@ -41,3 +41,5 @@ const webuserLogin = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+
+module.exports = { userLogin };

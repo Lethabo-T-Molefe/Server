@@ -48,15 +48,15 @@ CREATE TABLE IF NOT EXISTS `User` (
 
 LOCK TABLES `User` WRITE;
 INSERT INTO `User` (`Name`, `Email`, `PhoneNumber`, `Address`, `DateOfBirth`, `Password`, `MembershipStatus`, `LoyaltyPoints`)
-VALUES ('John Doe', 'john.doe@example.com', '1234567890', '123 Main St, Pretoria', '1990-05-15', MD5('password123'), 'Regular', 100);
+VALUES ('John Doe', 'john.doe@example.com', '1234567890', '123 Main St, Pretoria', '1990-05-15', 'password123', 'Regular', 100);
 
 -- User 2
 INSERT INTO `User` (`Name`, `Email`, `PhoneNumber`, `Address`, `DateOfBirth`, `Password`, `MembershipStatus`, `LoyaltyPoints`)
-VALUES ('Jane Smith', 'jane.smith@example.com', '0987654321', '456 Elm St, Pretoria', '1985-09-23', MD5('secret456'), 'VIP', 200);
+VALUES ('Jane Smith', 'jane.smith@example.com', '0987654321', '456 Elm St, Pretoria', '1985-09-23', 'secret456', 'VIP', 200);
 
 -- User 3
 INSERT INTO `User` (`Name`, `Email`, `PhoneNumber`, `Address`, `DateOfBirth`, `Password`, `MembershipStatus`, `LoyaltyPoints`)
-VALUES ('Mark Johnson', 'mark.johnson@example.com', '1122334455', '789 Pine St, Pretoria', '1992-12-07', MD5('pass789'), 'Regular', 150);
+VALUES ('Mark Johnson', 'mark.johnson@example.com', '1122334455', '789 Pine St, Pretoria', '1992-12-07', 'pass789', 'Regular', 150);
 
 -- User 4
 INSERT INTO `User` (`Name`, `Email`, `PhoneNumber`, `Address`, `DateOfBirth`, `Password`, `MembershipStatus`, `LoyaltyPoints`)
