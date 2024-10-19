@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `User` (
 
 LOCK TABLES `User` WRITE;
 INSERT IGNORE INTO `User` (`Name`, `Email`, `PhoneNumber`, `Address`, `DateOfBirth`, `Password`, `MembershipStatus`, `LoyaltyPoints`)
-VALUES ('John Doe', 'john.doe@example.com', '1234567890', '123 Main St, Pretoria', '1990-05-15', 'password123', 'Regular', 100);
+VALUES ('John Doe', 'john.doe@example.com', '1234567890', '123 Main St, Pretoria', '1990-05-15', MD5('password123'), 'Regular', 100);
 
 -- User 2
 INSERT IGNORE INTO `User` (`Name`, `Email`, `PhoneNumber`, `Address`, `DateOfBirth`, `Password`, `MembershipStatus`, `LoyaltyPoints`)
