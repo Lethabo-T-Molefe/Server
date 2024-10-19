@@ -1,41 +1,41 @@
 
 CREATE TABLE IF NOT EXISTS `Facility` (
-    `FacilityID` NUMBER(10) PRIMARY KEY AUTO_INCREMENT,
+    `FacilityID` INT PRIMARY KEY AUTO_INCREMENT,
     `Name` VARCHAR(255) NOT NULL,
     `Location` VARCHAR(255),
-    `Description` VARCHAR(250)
+    `Description` VARCHAR(250),
     `ContactInfo` VARCHAR(255),
     `FacilityType` VARCHAR(50) -- e.g., Museum, Park, Recreation Center
 );
 
 
 CREATE TABLE IF NOT EXISTS `Merchandise` (
-    `MerchandiseID` NUMBER(10) PRIMARY KEY AUTO_INCREMENT,
-    `FacilityID` NUMBER(10),
+    `MerchandiseID` INT PRIMARY KEY AUTO_INCREMENT,
+    `FacilityID` INT,
     `Name` VARCHAR(255) NOT NULL,
     `Price` DECIMAL(10, 2),
     `Description` VARCHAR(250),
-    `StockQuantity` NUMBER(1000),
+    `StockQuantity` INT,
     `Category` VARCHAR(50), -- e.g., Souvenirs, Apparel, Accessories
     FOREIGN KEY (FacilityID) REFERENCES Facility(FacilityID) ON DELETE CASCADE
 );
 
 
 CREATE TABLE IF NOT EXISTS `Event` (
-    `EventID` NUMBER(10) PRIMARY KEY AUTO_INCREMENT,
-    `FacilityID` NUMBER(10),
+    `EventID` INT PRIMARY KEY AUTO_INCREMENT,
+    `FacilityID`INT,
     `Name` VARCHAR(255) NOT NULL,
-    `Description` VARCHAR(250),
+    `Description` INT,
     `Date` DATE,
     `Time` TIME,
     `TicketPrice` DECIMAL(10, 2),
-    `Capacity` NUMBER(100),
+    `Capacity` INT,
     `EventType` VARCHAR(50), -- e.g., Festival, Concert, Exhibition
     FOREIGN KEY (FacilityID) REFERENCES Facility(FacilityID) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS `User` (
-    `UserID`  PRIMARY KEY AUTO_INCREMENT,
+    `UserID` INT PRIMARY KEY AUTO_INCREMENT,
     `Name` VARCHAR(255) NOT NULL,
     `Email` VARCHAR(255) NOT NULL UNIQUE,
     `PhoneNumber` VARCHAR(20),
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `User` (
     `DateOfBirth` DATE,
     `Password` varchar(100) NOT NULL, 
     `MembershipStatus` VARCHAR(20), -- e.g., Regular, VIP
-    `LoyaltyPoints` NUMBER(10) DEFAULT 0
+    `LoyaltyPoints` INT DEFAULT 0
 );
 
 LOCK TABLES `User` WRITE;
@@ -64,13 +64,13 @@ VALUES ('Emily Davis', 'emily.davis@example.com', '5566778899', '321 Oak St, Pre
 UNLOCK TABLES;
 
 CREATE TABLE IF NOT EXISTS `Booking` (
-    `BookingID` NUMBER(10) PRIMARY KEY AUTO_INCREMENT,
-    `FacilityID` NUMBER(10),
-    `UserID` NUMBER(10),
-    `EventID` NUMBER(10) NULL,
+    `BookingID` INT PRIMARY KEY AUTO_INCREMENT,
+    `FacilityID` INT,
+    `UserID` INT,
+    `EventID` INT NULL,
     `BookingDate` DATE,
     `TimeSlot` VARCHAR(50) NULL, -- if applicable
-    `NumberOfAttendees` NUMBER(100),
+    `NumberOfAttendees` INT,
     `BookingStatus` VARCHAR(20) DEFAULT 'Pending', -- e.g., Pending, Confirmed, Canceled
     FOREIGN KEY (`FacilityID`) REFERENCES Facility(`FacilityID`) ON DELETE CASCADE,
     FOREIGN KEY (`UserID`) REFERENCES User(`UserID`) ON DELETE CASCADE,
@@ -78,9 +78,9 @@ CREATE TABLE IF NOT EXISTS `Booking` (
 );
 
 CREATE TABLE IF NOT EXISTS `Payment` (
-    `PaymentID` NUMBER(10) PRIMARY KEY AUTO_INCREMENT,
-    `BookingID` NUMBER(10),
-    `UserID` NUMBER(10),
+    `PaymentID` INT PRIMARY KEY AUTO_INCREMENT,
+    `BookingID` INT,
+    `UserID` INT,
     `PaymentDate` DATE,
     `Amount` DECIMAL(10, 2),
     `PaymentMethod` VARCHAR(50), -- e.g., Credit Card, PayPal, Bank Transfer
@@ -90,18 +90,18 @@ CREATE TABLE IF NOT EXISTS `Payment` (
 );
 
 CREATE TABLE IF NOT EXISTS `Loyalty` (
-    `LoyaltyID` NUMBER(10) PRIMARY KEY AUTO_INCREMENT,
-    `UserID` NUMBER(10),
-    `PointsEarned` NUMBER(10),
-    `PointsRedeemed` NUMBER(10),
+    `LoyaltyID` INT PRIMARY KEY AUTO_INCREMENT,
+    `UserID` INT,
+    `PointsEarned` INT,
+    `PointsRedeemed` INT,
     `DateEarned` DATE,
     `ExpirationDate` DATE,
     FOREIGN KEY (`UserID`) REFERENCES `User`(`UserID`) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS `Price` (
-    `PriceID` NUMBER(10) PRIMARY KEY AUTO_INCREMENT,
-    `FacilityID` NUMBER(10),
+    `PriceID` INT PRIMARY KEY AUTO_INCREMENT,
+    `FacilityID` INT,
     `ServiceName` VARCHAR(255), -- e.g., Facility Usage, Event Entry
     `PriceAmount` DECIMAL(10, 2),
     `EffectiveDate` DATE,
