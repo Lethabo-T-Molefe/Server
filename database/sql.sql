@@ -34,9 +34,10 @@ CREATE TABLE IF NOT EXISTS `Event` (
     FOREIGN KEY (FacilityID) REFERENCES Facility(FacilityID) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS `User` (
+CREATE TABLE IF NOT EXISTS `Tourist` (
     `UserID` INT PRIMARY KEY AUTO_INCREMENT,
     `Name` VARCHAR(255) NOT NULL,
+    `Surname` VARCHAR(255) NOT NULL,
     `Email` VARCHAR(255) NOT NULL UNIQUE,
     `PhoneNumber` VARCHAR(20),
     `Address` VARCHAR(255),
@@ -46,17 +47,27 @@ CREATE TABLE IF NOT EXISTS `User` (
     `LoyaltyPoints` INT DEFAULT 0
 );
 
+CREATE TABLE IF NOT EXISTS `Admin`(
+    `UserID` INT PRIMARY KEY AUTO_INCREMENT,
+    `Name` VARCHAR(255) NOT NULL,
+    `Surname` VARCHAR(255) NOT NULL,
+    `Email` VARCHAR(255) NOT NULL UNIQUE,
+    `Password` VARCHAR(255) NOT NULL,
+);
+
+
+
 LOCK TABLES `User` WRITE;
 INSERT IGNORE INTO `User` (`Name`, `Email`, `PhoneNumber`, `Address`, `DateOfBirth`, `Password`, `MembershipStatus`, `LoyaltyPoints`)
 VALUES ('John Doe', 'john.doe@example.com', '1234567890', '123 Main St, Pretoria', '1990-05-15', MD5('password123'), 'Regular', 100);
 
 -- User 2
 INSERT IGNORE INTO `User` (`Name`, `Email`, `PhoneNumber`, `Address`, `DateOfBirth`, `Password`, `MembershipStatus`, `LoyaltyPoints`)
-VALUES ('Jane Smith', 'jane.smith@example.com', '0987654321', '456 Elm St, Pretoria', '1985-09-23', 'secret456', 'VIP', 200);
+VALUES ('Jane Smith', 'jane.smith@example.com', '0987654321', '456 Elm St, Pretoria', '1985-09-23', MD5('secret456'), 'VIP', 200);
 
 -- User 3
 INSERT IGNORE INTO `User` (`Name`, `Email`, `PhoneNumber`, `Address`, `DateOfBirth`, `Password`, `MembershipStatus`, `LoyaltyPoints`)
-VALUES ('Mark Johnson', 'mark.johnson@example.com', '1122334455', '789 Pine St, Pretoria', '1992-12-07', 'pass789', 'Regular', 150);
+VALUES ('Mark Johnson', 'mark.johnson@example.com', '1122334455', '789 Pine St, Pretoria', '1992-12-07', MD5('pass789'), 'Regular', 150);
 
 -- User 4
 INSERT IGNORE INTO `User` (`Name`, `Email`, `PhoneNumber`, `Address`, `DateOfBirth`, `Password`, `MembershipStatus`, `LoyaltyPoints`)
